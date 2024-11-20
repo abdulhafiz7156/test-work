@@ -15,7 +15,25 @@ import Link from '@mui/joy/Link';
 import Checkbox from '@mui/joy/Checkbox';
 import Cookies from 'js-cookie';
 
-const customTheme = extendTheme({ defaultColorScheme: 'dark' });
+const customTheme = extendTheme({
+    colorSchemes: {
+        dark: {
+            palette: {
+                background: {
+                    body: '#121212', // Example background color
+                },
+                text: {
+                    primary: '#fff', // Example text color
+                },
+                primary: {
+                    plainColor: '#90caf9', // Example for primary plain text color
+                },
+                // Add other colors as needed
+            },
+        },
+    },
+});
+
 
 export default function SignUp() {
     const navigate = useNavigate(); // Initialize useNavigate

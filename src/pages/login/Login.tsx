@@ -61,7 +61,24 @@ const ColorSchemeToggle: React.FC<IconButtonProps> = (props) => {
     );
 };
 
-const customTheme = extendTheme({ defaultColorScheme: "dark" });
+const customTheme = extendTheme({
+    colorSchemes: {
+        dark: {
+            palette: {
+                background: {
+                    body: '#121212', // Example background color
+                },
+                text: {
+                    primary: '#fff', // Example text color
+                },
+                primary: {
+                    plainColor: '#90caf9', // Example for primary plain text color
+                },
+                // Add other colors as needed
+            },
+        },
+    },
+});
 
 const Login: React.FC = () => {
     const handleSubmit = (event: React.FormEvent<SignInFormElement>) => {
@@ -105,9 +122,9 @@ const Login: React.FC = () => {
         navigate("/");
     };
 
-    const handleGoogleLoginError = (error: any) => {
-        console.log("Google login error", error);
-        // Handle the Google login error here
+    const handleGoogleLoginError = () => {
+        console.error('Google Login Error:');
+        // Handle the error as necessary
     };
 
     return (
@@ -197,7 +214,6 @@ const Login: React.FC = () => {
                                 onSuccess={handleGoogleLoginSuccess}
                                 onError={handleGoogleLoginError}
                                 useOneTap
-                                clientId="1041924221263-bvm79ds6tmdffeeg46dh7atehusbskg0.apps.googleusercontent.com" // Your Google Client ID
                                 theme="filled_blue"
                             />
                         </Stack>

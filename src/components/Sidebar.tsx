@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import {
     Avatar,
@@ -21,14 +21,13 @@ import {
 } from '@mui/icons-material';
 
 export default function Sidebar() {
-    const [userData, setUserData] = useState<{ name?: string; email?: string; picture?: string; }>({});
+    const [userData, setUserData] = useState<{ name?: string; email?: string; picture?: string }>({});
 
     useEffect(() => {
         const savedData = Cookies.get('formData');
-        setUserData(JSON.parse(savedData));
-
-        console.log(userData);
-
+        if (savedData) {
+            setUserData(JSON.parse(savedData));
+        }
     }, []);
 
     const handleLogout = () => {
@@ -91,7 +90,7 @@ export default function Sidebar() {
                 <Avatar
                     variant="outlined"
                     size="sm"
-                    src={userData.picture}
+                    src={userData.picture || undefined}  // Ensuring picture can be undefined safely
                 />
                 <Box sx={{ minWidth: 0, flex: 1 }}>
                     <Typography level="title-sm">

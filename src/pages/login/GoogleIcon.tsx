@@ -1,6 +1,3 @@
-// GoogleIcon.tsx
-import * as React from 'react';
-
 export default function GoogleIcon() {
     return (
         <span
